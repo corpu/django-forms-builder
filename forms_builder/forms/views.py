@@ -53,6 +53,8 @@ def form_detail(request, slug, template="forms/form_detail.html"):
                 msg.send()
             return redirect(reverse("form_sent", kwargs={"slug": form.slug}))
     context = {"form": form, "form_for_form": form_for_form}
+    if form.form_template:
+        template = form.form_template
     return render_to_response(template, context, RequestContext(request))
 
 
@@ -63,4 +65,6 @@ def form_sent(request, slug, template="forms/form_sent.html"):
     published = Form.objects.published(for_user=request.user)
     form = get_object_or_404(published, slug=slug)
     context = {"form": form}
+    if form.form_sent_template:
+        template = form.form_sent_template
     return render_to_response(template, context, RequestContext(request))

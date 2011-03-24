@@ -32,6 +32,10 @@ if USE_SITES:
         "classes": ("collapse",)}))
     form_admin_filter_horizontal = ("sites",)
 
+form_admin_fieldsets.append((_("Templates"), 
+    {"fields": ("form_template", "form_sent_template",),
+    "classes": ("collapse",)}))
+
 class FieldAdmin(admin.TabularInline):
     model = Field
 

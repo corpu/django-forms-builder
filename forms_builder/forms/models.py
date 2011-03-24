@@ -76,6 +76,9 @@ class AbstractForm(models.Model):
         max_length=200)
     email_subject = models.CharField(_("Subject"), max_length=200, blank=True)
     email_message = models.TextField(_("Message"), blank=True)
+    
+    form_template = models.CharField(_("Template to use for rendering the form"), max_length=250, blank=True, null=True)
+    form_sent_template = models.CharField(_("Template to use for rendering the form sent"), max_length=250, blank=True, null=True)
 
     objects = FormManager()
 
